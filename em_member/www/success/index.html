@@ -1,0 +1,85 @@
+{% extends 'templates/landingpage_base.html'%}
+
+{% block content %}
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src = "/assets/frappe/node_modules/jquery/dist/jquery.min.js"></script>
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Membership Profile </h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Membership Profile</li>
+          </ol>
+        </div>
+        
+      </div>
+    </section><!-- End Breadcrumbs -->
+    
+    
+    <section id = description>
+    <h2>Congratulations!<br> <br> You have successfully Paid your membership fee</h2>
+    </section>
+    <script>
+/*    function getCookie(name) {
+    var cname = name + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++){
+        var c = ca[i];
+        while(c.charAt(0) == ' '){
+            c = c.substring(1);
+        }
+        if(c.indexOf(cname) == 0){
+            return c.substring(cname.length, c.length);
+        }
+    }
+    return "";
+} 
+const dat = "15-02-2022";
+//const dates = dat.map(date => new Date(date).getTime())
+//console.log(Date.parse("2022-02-15"))
+let myInt = dat[6].concat (dat[7],dat[8],dat[9]);
+
+
+console.log(parseInt(myInt)+1)
+
+
+   // let val = parseInt(getCookie("val_bill"));
+    //document.querySelector('.bill').innerText = val; 
+ function foo(){   
+ fetch(`http://0.0.0.0:8001/api/resource/Members/?fields=["name", "membership_expire_date"]&filters=[["Members","email","=","michaelasnake644@gmail.com"]]`,{
+	headers: {
+      		'Authorization': 'token dee8ab57623961f:fff9a603eead917'
+    	},
+
+})
+    .then(res => res.json())
+    .then(json => {
+        console.log("First",json );
+
+})
+   
+}
+
+foo();
+    
+    
+   */ 
+    
+    
+    
+    </script>
+    
+    <style>
+    #description{
+    text-align:center;
+    }
+    </style>
+{% endblock %}

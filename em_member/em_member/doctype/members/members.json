@@ -1,0 +1,316 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:EMA-{YY}-{MM}-{membership_type}-{####}",
+ "creation": "2022-05-09 10:30:10.926948",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "prefix",
+  "titleoptional",
+  "full_name",
+  "last_name",
+  "date_of_birth",
+  "geder",
+  "picture",
+  "phone_number",
+  "email",
+  "column_break_7",
+  "img",
+  "additional_contact_section",
+  "name_2",
+  "title_2",
+  "phone_2",
+  "email_2",
+  "section_break_14",
+  "profession_specialization",
+  "other_specialization",
+  "educational_credentials",
+  "graduated_from_section",
+  "institution",
+  "column_break_20",
+  "undergrade_contactuate",
+  "column_break_22",
+  "year_of_completion",
+  "address_field_section",
+  "region",
+  "column_break_26",
+  "city",
+  "column_break_28",
+  "po_box",
+  "section_break_30",
+  "place_of_employmentinstitution",
+  "other_work",
+  "membership_expire_date",
+  "membership_type",
+  "membership_fee_amount",
+  "generate_payment_reference",
+  "member_status",
+  "published",
+  "route"
+ ],
+ "fields": [
+  {
+   "fieldname": "prefix",
+   "fieldtype": "Select",
+   "label": "Prefix",
+   "options": "\nDr\nProf\nMr\nMrs\nMs"
+  },
+  {
+   "fieldname": "titleoptional",
+   "fieldtype": "Select",
+   "label": "Title(Optional)",
+   "options": "\nMD\nMPH\nPHD\nMSC\nOther"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "First Name"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "geder",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "\nMale\nFemale"
+  },
+  {
+   "fieldname": "picture",
+   "fieldtype": "Attach Image",
+   "label": "Picture "
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email",
+   "set_only_once": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "additional_contact_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Contact"
+  },
+  {
+   "fieldname": "name_2",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "title_2",
+   "fieldtype": "Select",
+   "label": "Title(Optional)",
+   "options": "\nMD\nMPH\nPHD\nMSC\nOther"
+  },
+  {
+   "fieldname": "phone_2",
+   "fieldtype": "Data",
+   "label": "Phone Number",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "email_2",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "section_break_14",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "profession_specialization",
+   "fieldtype": "Select",
+   "label": "Profession (Specialization)",
+   "options": "\nGeneral Medical Practitioner\nInternist\nPediatrician\nObstetrician and Gynecologist\nGeneral Surgeon\nNeurosurgeon\nOrthopedic & Trauma Surgeon\nPsychiatrist\nOphthalmologist\nDermatovenerologist\nOtorhinolaryngology (ear, nose and throat)\nAnesthesiologist\nPathologist\nRadiologist\nDental Science Professional\nDental Surgeons\nEndodontist\nOral & Maxillofacial Surgeons\nOrthodontist Specialist\nPediatric Dentistry Specialists\nPeriodontics Specialists\nProsthodontics Specialists\nOral Medicine Specialists' Scope of Practice\nPublic Health specialist I\nPublic Health Specialist II\nother"
+  },
+  {
+   "fieldname": "other_specialization",
+   "fieldtype": "Data",
+   "label": "Other specialization"
+  },
+  {
+   "fieldname": "educational_credentials",
+   "fieldtype": "Attach",
+   "label": "Educational Credentials"
+  },
+  {
+   "fieldname": "graduated_from_section",
+   "fieldtype": "Section Break",
+   "label": "Graduated from"
+  },
+  {
+   "fieldname": "institution",
+   "fieldtype": "Data",
+   "label": "Institution"
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "undergrade_contactuate",
+   "fieldtype": "Data",
+   "label": "undergrade"
+  },
+  {
+   "fieldname": "column_break_22",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "year_of_completion",
+   "fieldtype": "Data",
+   "label": "Year of Completion"
+  },
+  {
+   "fieldname": "address_field_section",
+   "fieldtype": "Section Break",
+   "label": "Address Field"
+  },
+  {
+   "fieldname": "region",
+   "fieldtype": "Select",
+   "label": "Region",
+   "options": "\nAddis Ababa\nAfar\nAmhara\nBenishangul-Gumuz\nDire Dawa\nGambella\nHarari\nOromia\nSomali\nTigray\nSNNPR\nSidama"
+  },
+  {
+   "fieldname": "column_break_26",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "column_break_28",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "po_box",
+   "fieldtype": "Data",
+   "label": "P.O. box"
+  },
+  {
+   "fieldname": "section_break_30",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "place_of_employmentinstitution",
+   "fieldtype": "Select",
+   "label": "Place of Employment/Institution",
+   "options": "\nAdama General Hospital and Medical College\nAdama Hospital Medical College\nAddis Ababa University\nAdigrat University\nAfrica Medical College\nAksum University College of Health Science\nAmbo University Medical School\nArba Minch University\nArsi University College of Health Sciences\nBahir Dar University\nBethel Medical College\nDebre Berhan University\nDebre Markos University School of Medicine\nDebre Tabor University\nDefense University College of Health Sciences\nDilla University\nDire Dawa University School of Medicine\nEthiopian Catholic University\nGamby College of Medical Science\nHaramaya University\nHawassa University\nHayat Medical College\nJigjiga University\nJimma University\nMadda Walabu University College of Medicine\nMekelle University College of Health Sciences\nMizan-Tepi University\nMyungSung Medical College\nSant\u00e9 Medical College\nSt. Paul's Hospital Millennium Medical College\nUniversity of Gondar\nWachemo University\nWolaita Sodo University\nWolkite University\nWollega University\nWollo University\nYekatit 12 Hospital Medical College\nYirgalem Hospital Medical College\nBulehora College of medical sciences\nother"
+  },
+  {
+   "fieldname": "other_work",
+   "fieldtype": "Data",
+   "label": "Other work"
+  },
+  {
+   "fieldname": "membership_type",
+   "fieldtype": "Select",
+   "label": "Membership type",
+   "options": "\nAssociate\nCorporate\nHonorable\nJDN\nJunior(Medical Students)\nLifetime\nNEDD\nRegular"
+  },
+  {
+   "fieldname": "membership_fee_amount",
+   "fieldtype": "Data",
+   "label": "Membership fee amount"
+  },
+  {
+   "fieldname": "generate_payment_reference",
+   "fieldtype": "Link",
+   "label": "Generate payment reference ",
+   "options": "Payment"
+  },
+  {
+   "fieldname": "member_status",
+   "fieldtype": "Select",
+   "label": "Member Status",
+   "options": "Inactive\nActive"
+  },
+  {
+   "default": "0",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "label": "published"
+  },
+  {
+   "default": "0",
+   "fieldname": "route",
+   "fieldtype": "Check",
+   "label": "Route"
+  },
+  {
+   "fieldname": "img",
+   "fieldtype": "Image",
+   "label": "img",
+   "options": "picture"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "membership_expire_date",
+   "fieldtype": "Date",
+   "label": "Membership Expire Date"
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-05-20 11:36:27.460288",
+ "modified_by": "Administrator",
+ "module": "Em Member",
+ "name": "Members",
+ "name_case": "UPPER CASE",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Guest",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,177 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:EMA-{YY}-{MM}-Organization-{####}",
+ "creation": "2022-05-10 15:07:12.654748",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "name_1",
+  "email",
+  "industry",
+  "head_office_location",
+  "region",
+  "column_break_6",
+  "city",
+  "column_break_8",
+  "phone_number",
+  "other_locations_section",
+  "region_2",
+  "column_break_12",
+  "city_2",
+  "column_break_14",
+  "phone_number_2",
+  "section_break_16",
+  "website",
+  "organization_member",
+  "membership_expire_date",
+  "status",
+  "generate_payment_reference",
+  "membership_fee"
+ ],
+ "fields": [
+  {
+   "fieldname": "name_1",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email",
+   "options": "Email",
+   "reqd": 1,
+   "set_only_once": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "industry",
+   "fieldtype": "Data",
+   "label": "Industry"
+  },
+  {
+   "fieldname": "head_office_location",
+   "fieldtype": "Section Break",
+   "label": "Head Office Location"
+  },
+  {
+   "fieldname": "region",
+   "fieldtype": "Select",
+   "label": "Region",
+   "options": "\nAddis Ababa\nAfar\nAmhara\nBenishangul-Gumuz\nDire Dawa\nGambella\nHarari\nOromia\nSomali\nTigray\nSNNPR\nSidama"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "other_locations_section",
+   "fieldtype": "Section Break",
+   "label": "Other locations"
+  },
+  {
+   "fieldname": "region_2",
+   "fieldtype": "Select",
+   "label": "Region",
+   "options": "\nAddis Ababa\nAfar\nAmhara\nBenishangul-Gumuz\nDire Dawa\nGambella\nHarari\nOromia\nSomali\nTigray\nSNNPR\nSidama"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "city_2",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "phone_number_2",
+   "fieldtype": "Data",
+   "label": "Phone Number",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "label": "Website"
+  },
+  {
+   "fieldname": "organization_member",
+   "fieldtype": "Table MultiSelect",
+   "label": "Organization Member",
+   "options": "Organization Member"
+  },
+  {
+   "fieldname": "membership_expire_date",
+   "fieldtype": "Date",
+   "label": "Membership Expire Date"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Organization status",
+   "options": "Inactive\nActive"
+  },
+  {
+   "fieldname": "generate_payment_reference",
+   "fieldtype": "Link",
+   "label": "Generate Payment Reference",
+   "options": "Payment"
+  },
+  {
+   "fieldname": "membership_fee",
+   "fieldtype": "Data",
+   "label": "Amount of Membership Fee "
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-05-19 11:55:03.058600",
+ "modified_by": "Administrator",
+ "module": "Em Member",
+ "name": "Organizations",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

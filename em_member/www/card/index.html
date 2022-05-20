@@ -1,0 +1,169 @@
+{% extends 'templates/landingpage_base.html'%}
+
+{% block content %}
+
+
+
+ <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Membership Card </h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Membership Card</li>
+          </ol>
+        </div>
+        
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+
+
+
+<section id="my-section">
+
+<div class = "holder">
+
+<div class = "printform">
+<button class="btn btn-primary" onclick="window.print()">Print</button>
+</div>
+
+<div class = "contain">
+
+<div class ="up">
+<div class = "logom"></div>
+<div class = "title">
+<p>NETWORK OF ETHIOPIAN <br> DIASPORA DOCTORS <br> MEMBERSHIP ID</p>
+</div>
+</div>
+
+<div>
+<div class = "down">
+<div class = "imagep">
+<img src={{logedinMembercard.picture}} alt="">
+</div>
+<div class = "info">  
+<h1> Name: {{logedinMembercard.full_name}} </h1>
+<h2> ID: {{logedinMembercard.name}}</h2>
+<h2> Valid Through: </h2>
+</div>
+</div>
+
+
+<div class = "txt"> 
+<p>Strong and dependable physicians for better health!</p>
+</div>
+
+</div>
+
+</section>
+
+<style>
+
+@media print{
+ body *:not(#my-section):not(#my-section *){
+ 	visibility: hidden;
+ 	}
+	button{
+	visibility: hidden;
+	}
+
+	#my-section{
+		position: absolute;
+		top: 0;
+		left: 0;
+	
+	}
+}
+
+
+
+.up{
+display:flex;
+}
+
+
+
+.holder{
+display:flex;
+justify-content:center;
+
+
+}
+
+.printform{
+align-items:center;
+text-align:center;
+margin-right:10%;
+margin-top:200px;
+}
+
+.contain{
+background-image: url('assets/em_member/Landing/img/emacard.svg');
+background-repeat: no-repeat;
+background-size:cover;
+position:relative;
+height: 460px;
+width: 810px;
+align-items:center;
+
+
+}
+
+.down{
+display: flex;
+}
+
+.title{
+margin-top:10%;
+color:#135A55;
+margin-left: 7%;
+font-size:25px;
+text-align:center;
+}
+
+
+.imagep{
+border-radius:75px;
+border:5px;
+border-style:solid;
+border-color:#70A7DA;
+height:150px;
+width:150px;
+justify-content:center;
+margin-top: -2%;
+margin-left: 12%;
+margin-right: 5%;	
+
+
+}
+
+
+.logom{
+background-image: url('assets/em_member/Landing/img/EMA-logo.png');
+background-repeat: no-repeat;
+background-size:cover;
+height:150px;
+width: 150px;
+}
+.info{
+margin-top:5%;
+}
+
+.txt{
+margin-top:1%;
+float:right;
+}
+
+img{
+object-fit:cover;
+border-radius:inherit;
+}
+
+</style>
+
+{% endblock %}
+
+

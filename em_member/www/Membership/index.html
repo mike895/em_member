@@ -1,0 +1,492 @@
+{% extends 'templates/landingpage_base.html'%}
+
+{% block content %}
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src = "/assets/frappe/node_modules/jquery/dist/jquery.min.js"></script>
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Membership Profile </h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Membership Profile</li>
+          </ol>
+        </div>
+        
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+            <input type= "number" id = "see"  value = {{see}}  hidden>
+              <!-- here came the custom webform  -->
+              <form>
+               
+                <div class="form-group">
+                  <label for="prefixSelector">Prefix</label>
+                  <select class="form-control" id="prefixSelector"name = "prefix">
+                    <!-- Prefix cannot be "('Prof',)". It should be one of "Dr", "Prof", "Mr", "Mrs", "Ms" -->
+                    <option value = "">Select Your Prefix</option>
+                    <option value = "Dr" >Dr</option>
+                    <option value = "Prof">Prof</option>
+                    <option value = "Mr">Mr</option>
+                    <option value = "Mrs">Mrs</option>
+                    <option value = "Ms">Ms</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="titleSelector">Title(Optional)</label>
+                  <select class="form-control" id="titleSelector"name ="titleoptional">
+                  
+                    <option value = "">Select Your Title</option>
+                    <option value = "MD">MD</option>
+                    <option value = "MPH">MPH</option>
+                    <option value = "PHD">PHD</option>
+                    <option value = "MSC">MSC</option>
+                    <option value = "Other">Other</option>
+                    
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="full_name">First Name *</label>
+                  {% if logedinMember %}
+                  <input class="form-control" id="full_name" type="text" value={{logedinMember.full_name}} placeholder="Full Name" name = "full_name">
+                  {% else %}
+                  <input class="form-control" id="full_name" type="text" name = "full_name" placeholder="Full Name" required>
+                  {% endif %}
+               </div>
+               
+                <div class="form-group">
+                  <label for="full_name">Last Name *</label>
+                  {% if logedinMember %}
+                  <input class="form-control" id="last_name" type="text" value={{logedinMember.last_name}} placeholder="Full Name" name = "last_name">
+                  {% else %}
+                  <input class="form-control" id="last_name" type="text" name = "last_name" placeholder="Last Name" required>
+                  {% endif %}
+               </div>    
+                <div class="form-group">
+                  <label for="genderSelector">Gender</label>
+                  <select class="form-control" id="genderSelector" name = "geder">
+                    <option value = "">Select Your Gender</option>
+                    <option value = "Male">Male</option>
+                    <option value = "Female">Female</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="profilePicture">Upload Profile Picture</label><br/>
+                  <input type="file" class="form-control" id="profilePicture" accept="image/*" name = "picture" required>
+                </div>
+        
+		   <div class="preview">
+		   <img id="file-ip-1-preview">
+		   </div>
+                         
+                
+                <div class="form-group">
+                  <label for="phone_number">Phone Number *</label>
+                  {% if logedinMember %}
+                  <input type="number" class="form-control" id="phone_number" value={{logedinMember.phone_number}} placeholder="09********" name = "phone_number">
+                  {% else %}
+                  <input type="number" class="form-control" id="phone_number" placeholder="09********" name = "phone_number" required>
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  <label for="email">Email address *</label>
+    
+                  <input type="email" class="form-control" id="email" value={{email}} name = "email" placeholder="name@example.com" Readonly>
+                 
+                </div>
+                <div class="form-group">
+                  <label for="profession_specialization">Profession (Specialization)*</label>
+                 <select class="form-control profession_specialization-select" id="profession_specialization" name = "profession_specialization">
+                  <option value = "">Select your Profession</option>
+                  <option value = "Anesthesiologist">Anesthesiologist</option>
+                  <option value = "Dental Science Professional">Dental Science Professional</option>
+                  <option value = "Dental Surgeons">Dental Surgeons</option>
+                  <option value = "Dermatologist">Dermatologist</option>
+                  <option value = "Endodontist">Endodontist</option>
+                  <option value = "General Medical Practitioner">General Medical Practitioner</option>
+                  <option value = "General Surgeon">General Surgeon</option>
+                  <option value ="Internist">Internist</option>
+                  <option value = "Neurosurgeon">Neurosurgeon</option>
+                  <option value = "Obstetrician and Gynecologist">Obstetrician and Gynecologist</option>
+                  <option value = Ophthalmologist">Ophthalmologist</option>
+                  <option value = "Oral & Maxillofacial Surgeons">Oral & Maxillofacial Surgeons</option>
+                  <option value = "Oral Medicine Specialists Scope of Practice">Oral Medicine Specialists Scope of Practice</option>
+                  <option value ="Orthodontist Specialist">Orthodontist Specialist</option>
+                  <option value = "Orthopedic & Trauma Surgeon">Orthopedic & Trauma Surgeon</option>
+                  <option value="Otorhinolaryngology (ear, nose and throat)">Otorhinolaryngology /ENT (ear, nose and throat) Specialist</option>
+                  <option value ="Pathologist">Pathologist</option>
+                  <option value = "Pediatric Dentistry Specialists">Pediatric Dentistry Specialists</option>
+                  <option value ="Pediatrician">Pediatrician</option>
+                  <option value = "Periodontics Specialists">Periodontics Specialists</option>                  
+                  <option value = "Public Health specialist I">Public Health specialist I</option>
+                  <option value = "Public Health Specialist II">Public Health Specialist II</option>
+                  <option value ="Psychiatrist">Psychiatrist</option>
+                  <option value = Radiologist">Radiologist</option>
+                  <option value="other">Other..</option>
+                  
+                  
+                  
+                </select>
+                <!-- context from the database  -->
+                <!-- {% if logedinMember %}
+                  <input class="form-control" id="profession_specialization" type="text" value={{logedinMember.profession_specialization}} placeholder="Profession (Specialization)">
+                  {% else %}
+                  <input class="form-control" id="profession_specialization" type="text" placeholder="profession_specialization">
+                  {% endif %} -->
+                  <!-- end of context from database  -->
+                  
+                  <label for="otherSpe"></label>
+                  <input class="form-control medapay-hide" id="otherSpe" type="text"  placeholder="Specialization" name = "other_specialization">
+                </div>
+                
+               <!-- <div class="form-group "> -->
+                  
+                <!-- <input id="otherSpe" placeholder="other.." type="text"/> -->
+                
+               <!-- </div> -->
+               
+               
+               <div class="form-group">
+                 <label for="place_of_employmentinstitution">Place Of Work</label>
+                 <select class="form-control place_of_employmentinstitution-select" id="place_of_employmentinstitution" name = "place_of_employmentinstitution">
+                  <option value = "">Select Your Employement Institution </option>
+                  <option value = "Adama General Hospital and Medical College">Adama General Hospital and Medical College</option>
+                  <option value = "Adama Hospital Medical College">Adama Hospital Medical College</option>
+                  <option value = "Addis Ababa University">Addis Ababa University, College of Health Sciences, School of Medicine</option>
+                  <option value = "Adigrat University">Adigrat University College of Medicine and Health Science</option>
+                  <option value = "Africa Medical College" >Africa Medical College</option>
+                  <option value = "Aksum University College of Health Science">Aksum University College of Health Science</option>
+                  <option value = "Ambo University Medical School">Ambo University Medical School</option>
+                  <option value = "Arba Minch University">Arba Minch University College of Medicine and Health Sciences</option>
+                  <option value = "Arsi University College of Health Sciences">Arsi University College of Health Sciences</option>
+                  <option value = "Bahir Dar University">Bahir Dar University College of Medicine and Health Sciences</option>
+                  <option value = "Bethel Medical College">Bethel Medical College</option>
+                  <option value = "Bulehora College of medical sciences">Bulehora College of medical sciences</option>
+                  <option value = "Debre Berhan University">Debre Berhan University School of Health Science</option>
+                  <option value = "Debre Markos University School of Medicine">Debre Markos University School of Medicine</option>
+                  <option value = "Defense University College of Health Sciences">Defense University College of Health Sciences</option>
+                  <option value = "Dilla University">Dilla University School of Health and Medical Science</option>
+                  <option value = "Dire Dawa University School of Medicine">Dire Dawa University School of Medicine</option>
+                  <option value = "Ethiopian Catholic University">Ethiopian Catholic University of St. Thomas Aquinas (ECUSTA) School of Medicine</option>
+                  <option value = "Gamby College of Medical Science">Gamby College of Medical Science</option>
+                  <option value = "Haramaya University">Haramaya University College of Health and Medical Sciences</option>
+                  <option value = "Hawassa University">Hawassa University College of Medicine and Health Science</option>
+                  <option value = "Hayat Medical College">Hayat Medical College</option>
+                  <option value = "Jigjiga University">Jigjiga University College of Medicine and Health Science</option>
+                  <option value = "Jimma University">Jimma University College of Public Health and Medical Sciences</option>
+                  <option value = "Madda Walabu University College of Medicine">Madda Walabu University College of Medicine</option>
+                  <option value = "Mekelle University College of Health Sciences">Mekelle University College of Health Sciences</option>
+                  <option value = "Mizan-Tepi University">Mizan-Tepi University College of Health Science</option>
+                  <option value = "MyungSung Medical College">MyungSung Medical College</option>
+                  <option value = "Santé Medical College">Santé Medical College</option>
+                  <option value = "St. Paul's Hospital Millennium Medical College">St. Paul's Hospital Millennium Medical College</option>
+                  <option value = "University of Gondar">University of Gondar College of Medicine and Health Sciences</option>
+                  <option value = "Wachemo University">Wachemo University College of Medicine and Health Sciences</option>
+                  <option value = "Wolaita Sodo University">Wolaita Sodo University College of Health Sciences and Medicine</option>
+                  <option value = "Wolkite University">Wolkite University College of Medicine and Health Sciences</option>
+                  <option value = "Wollega University">Wollega University College of Medical and Health Sciences</option>
+                  <option value = "Wollo University">Wollo University College of Medicine and Health Sciences</option>
+                  <option value = "Yekatit 12 Hospital Medical College">Yekatit 12 Hospital Medical College</option>
+                  <option value = "Yirgalem Hospital Medical College">Yirgalem Hospital Medical College</option>
+                  <option value="other">Other..</option>
+                </select>
+                
+
+
+<!-- change the context to select -->
+                <!-- {% if logedinMember %}
+                <input class="form-control" id="place_of_employmentinstitution" type="text" value={{logedinMember.place_of_employmentinstitution}} placeholder="Profession (Specialization)">
+                {% else %}
+                <input class="form-control" id="place_of_employmentinstitution" type="text" placeholder="please enter your  institution of employment">
+                {% endif %} -->
+                <!--  -->
+                <label for="otherWork"></label>
+              <input class="form-control medapay-hide" id="otherWork" type="text"  placeholder="Place Of Work" name = "other_work">
+             </div>
+            <!--  <div class="form-group">  -->
+              
+            <!-- <input id="otherSpe" placeholder="other.." type="text"/> -->
+            
+         <!--  </div> -->
+             <div class="form-group">
+              <label for="employment_type">Type of employment </label>
+              <select class="form-control employment_type-select" id="employment_type">
+                <option value = "">Select Your Employement Type</option>
+                <option value = "Academia">Academia</option>
+                <option value = "NGO">NGO</option>
+                <option value = "Private">Private</option>
+                <option value = "Public">Public</option>
+                          
+              </select>
+            </div> 
+           
+              <div class="detail-section ">
+                <a id="details"></a>
+ 
+                  <div class="form-group">
+                    <label for="date">Date of Birth </label>
+                    <input class="form-control dateValue" id="date" type="date" name="date_of_birth" >
+                  </div>
+                    <div class="header"><p>Additional Contact</p></div>
+              
+                    <div class="row">
+                    
+                       <div class="col-md-6">
+                            <div class="form-group">
+                             
+                             <label for="additionaltitle">Title(Optional)</label>
+                  	      <select class="form-control" id="additionaltitle"name ="title_2">
+                  
+	              		     <option value = "">Select Your Title</option>
+		                    <option value = "MD">MD</option>
+		                    <option value = "MPH">MPH</option>
+		                    <option value = "PHD">PHD</option>
+		                    <option value = "MSC">MSC</option>
+		                    <option value = "Other">Other</option>
+                    
+                  		</select>
+                                                           
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="additionalFullname">Additional Full Name </label>
+                                <input id="additionalFullname" type="text" name="name_2" class="form-control" placeholder="Enter Your Full Name"  >
+                            </div>
+                        </div>
+                        </div>
+                         <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="additionalEmail">Additional Email </label>
+                                <input id="additionalEmail" type="email" name="email_2" class="form-control" placeholder="Enter Your Email">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="additionalPhone">Additional Phone</label>
+                                <input id="additionalPhone" type="tel" name="phone_2" class="form-control" placeholder="Enter your Phone Number">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header"><p>Graduated From</p></div>
+                    <div class="row">
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="Institution">Institution </label>
+                              <input id="Institution" type="text" name="institution" class="form-control" placeholder="Enter Your Institution "  >
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="UndergradeContactuate">Undergrade Contactuate  </label>
+                              <input id="UndergradeContactuate" type="text" name="Undergrade_Contactuate " class="form-control" placeholder="Enter Your Undergrade Contactuate">
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="Yearofcompletion">Year Of Completion</label>
+                              <input id="Yearofcompletion" type="text" name="year_of_completion" class="form-control" placeholder="Enter Your Year of Completion">
+                              <div class="help-block with-errors"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="Educational_Credentials" ><p class="header">Educational Credentials</p></label><br/>
+                    <input type="file" class="form-control-file" id="Educational_Credentials" accept="application/*" name = "educational_credentials">
+                  </div>
+                  <div>
+                    <div class="header"><p>Address field</p></div>
+                    <div class="row">
+                      <div class="col-sm-5">
+                          <div class="form-group">
+                              <label for="region">Region </label>
+                             <!-- <input id="region" type="text" name="region" class="form-control" placeholder="region"  > -->
+                               <select class="form-control" id="region" name = "region">
+				  <option value = "">Region</option>
+				  <option value = "Addis Ababa">Addis Ababa</option>
+				  <option value = "Afar">Afar</option>
+				  <option value = "Amhara">Amhara</option>
+				  <option value = "Benishangul-Gumuz">Benishangul-Gumuz</option>
+				  <option value = "Dire Dawa">Dire Dawa</option>
+				  <option value = "Gambella">Gambella</option>
+				  <option value = "Harari">Harari</option>
+				  <option value = "Oromia">Oromia</option>
+				  <option value = "Sidama">Sidama</option>
+				  <option value = "Somali">Somali</option>
+				  <option value = "Southern Nations, Nationalities, and Peoples"> Southern Nations, Nationalities, and Peoples</option>
+				  <option value = "Tigray">Tigray</option>
+				</select>                           
+      
+                          </div>
+                      </div>
+                      <div class="col-sm-5">
+                          <div class="form-group">
+                              <label for="city">City </label>
+                              <input id="city" type="text" name="city" class="form-control" placeholder="City">
+                          </div>
+                      </div>
+                      <div class="col-sm-2">
+                          <div class="form-group">
+                              <label for="pobox">P.O. box</label>
+                              <input id="pobox" type="text" name= "po_box" class="form-control" placeholder="P.O. box">
+                              <div class="help-block with-errors"></div>
+                          </div>
+                      </div>
+              </div>
+
+              <div class="form-group">
+                <label for="membership">Membership type *</label>
+                <select class="form-control membership-select" id="membership" name = "membership_type">
+                  <option value = "">Select Your Membership Type</option>
+                  <option value = "Regular">Regular</option>
+                  <option value = "Associate">Associate</option>
+                  <option value = "Junior(Medical Students)">Junior(Medical Students)</option>
+                  <option value = "Honorable">Honorable</option>
+                  <option value = "NEDD">NEDD</option>
+                  <option value = "Lifetime">Lifetime</option>
+                  <option value = "JDN">JDN</option>
+                </select>
+              </div>
+              <div class="form-group">
+              <label for="fee">Membership fee amount</label>
+              
+              <input class="medapay-hide form-control" id="fee"type="text" readonly name = "membership_fee_amount">
+            </div>
+            
+            
+             <div class="dollarAccount  medapay-hide form-group">
+
+                <div>
+                  <div class="portfolio-info">
+                    <h3>EMA Dollar account detail information</h3>
+                    <ul>
+                      <li><strong>Bank Name:</strong>  Cooperative Bank of Oromia</li>
+                      <li><strong>Branch Name: </strong>Abanebso branch </li>
+                      <li><strong>Account Name:</strong> Ethiopian Medical Association Bank Account#: 1011100039497</li>
+                      <li><strong>SWIFT code/BIC: </strong> CBORETAA </li>
+                      <li><strong>Bank Address: </strong>Addis Ababa, Ethiopia </li>
+                      <li><strong>Receivers corresponding bank:</strong>  MSHQUS33XXX, MASHREQ Bank PSC, New York</li>
+                      <li><strong>Intermediary bank account number: </strong> 70011228 </li>
+                      <li><strong>Visit Other Pages :</strong>: <a href="https://www.ethiopianmedicalass.org/membership/types-of-membership/">Types of Membership - Ethiopian Medical Association</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                  <div>
+                    <h4>Pay with Dollar Account 
+                    </h4>
+                    <label for="paymentRecipt">Attach Payment Receipt</label><br/>
+                    <input type="file" class="form-control-file" id="paymentRecipt" name = ""receipt>
+                    <div>
+                      
+                      <a href="#" type="button" style="margin-top: 20px" class=" sendReceipt ">Send Receipt</a>
+                    </div>
+                  </div>
+                    
+
+<!-- EMA Dollar account detail information
+Bank Name: Cooperative Bank of Oromia
+Branch Name: Abanebso branch 
+Bank Account Name: Ethiopian Medical Association Bank Account#: 1011100039497 
+SWIFT code/BIC: CBORETAA 
+Bank Address: Addis Ababa, Ethiopia 
+Receivers corresponding bank: MSHQUS33XXX, MASHREQ Bank PSC, New York
+Intermediary bank account number: 70011228 -->
+
+
+                 
+                </div>
+              
+            
+            
+            
+              <div class="withmeda medapay-hide">
+              <div class="form-group">
+                <label for="reference">Generate Payment reference</label>
+               
+                <input class="form-control" id="reference" type="text" placeholder="Readonly input here…" name = "generate_payment_reference" readonly>
+              </div>
+              
+              <div>
+
+                <span href="index.html" type="button" target="_blank"  class="paywithmeda">Pay with MedaPay</span>
+              </div>
+            </div> 
+              </form>
+
+            </div>
+     
+           <!--  <a href="index.html" type="button" class="saveUpdateq">Save Information</a> -->
+            <button class = "saveUpdate">Save the Information</button>
+          </div>
+
+              <!-- end custom webform -->
+            </div>
+          </div>
+
+
+<style>
+button{
+  border:none;
+}
+</style>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Minimum Required field</h3>
+              <ul>
+                <li><strong>Full Name :</strong> ex.xyz</li>
+                <li><strong>Phone No :</strong> ex.09*****</li>
+                <li><strong>Membership Type :</strong> ex.Associate</li>
+                <li><strong>Visit Other Pages :</strong>: <a href="https://www.ethiopianmedicalass.org/membership/types-of-membership/">Types of Membership - Ethiopian Medical Association</a></li>
+              </ul>
+            </div>
+            <div class="portfolio-description">
+              <h2>Welcome To EMA Membership Registration Form</h2>
+              <p>
+               once you fill the bare minimum, proceed and register by paying your membership fee which will be updated annually 
+                 </p>
+            </div>
+            <!-- <div>￼
+Name
+Module
+13 of 13
+￼
+Organization
+Em Member
+1 w
+ 0
+￼
+Member
+
+              <a href="#details" type="button" class="filldetail">fill details Information</a>
+            </div> -->
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
+
+  </main><!-- End #main -->
+  
+  <!-- <script>  </script> -->
+{% endblock %}
