@@ -8,6 +8,6 @@ def get_context(context):
     if logedinorg:
     	context.see = 1
     else:
-    	contetext.see = 0
+    	context.see = 0
     print("looooooooo",logedinorg)
     

@@ -107,7 +107,8 @@ def getStatus(req):
 	input = json.loads(req)
 	billReference = input['billReference']
 	print('bill ref',billReference)
-	url = 'http://192.168.1.14:6789/api/bills/'+billReference
+	url = 'https://api.sandbox.pay.meda.chat/api/bills/'+billReference
+	#url ='https://api.pay.meda.chat/api/bills/'+billReference
 	statusResponse = requests.get(url,headers={
 		"Authorization": 'Bearer '+input['accessToken'],
 
@@ -127,8 +128,10 @@ def paywithMeda(self,args):
 	input =json.loads(args)
 	print(input)
 	print(type(input['phone_number']))
-	url ='http://192.168.1.14:6789/api/bills/'
-	payload={"purchaseDetails":{"orderId": input["email"],"membership":input["membership_type"],"type":input["redirect"] ,"description": 'Paying for '+input["membership_type"]+' membership',"amount": int(input['amount']),"customerName": input['full_name'],"customerPhoneNumber" : '+'+str(input['phone_number'])},"redirectUrls": {"returnUrl": "http://0.0.0.0:8001/success","cancelUrl": "http://0.0.0.0:8001/failed","callbackUrl": "http://192.168.1.23:3000/api/callback"}}
+	#url ='http://192.168.1.14:6789/api/bills/'
+	#url ='https://api.pay.meda.chat/api/bills/'
+	url = 'https://api.sandbox.pay.meda.chat/api/bills/'
+	payload={"purchaseDetails":{"orderId": input["email"],"membership":input["membership_type"],"type":input["redirect"] ,"description": 'Paying for '+input["membership_type"]+' membership',"amount": int(input['amount']),"customerName": input['full_name'],"customerPhoneNumber" : '+'+str(input['phone_number'])},"redirectUrls": {"returnUrl": "http://18.193.100.79:8001/success","cancelUrl": "http://18.193.100.79:8001/failed","callbackUrl": "https://18.193.100.79:3000/api/callback"}}
 	print(payload)
 	#18.193.100.79
 	response = requests.post(url,

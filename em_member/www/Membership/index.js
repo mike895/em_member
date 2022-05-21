@@ -6,7 +6,7 @@ function setCookie(name,value,exp_days) {
     document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 */
-var delayInMilliseconds = 1000;
+var value;
 var see = document.querySelector('#see').value; 
 
 var medaUrl;
@@ -14,7 +14,8 @@ var medaUrl;
 	
 
 document.querySelector('.paywithmeda').addEventListener('click', async () => {
- check()
+value = 1;
+ check();
 })
   // for attaching payment receipt for NEDD members
 document.querySelector('.sendReceipt').addEventListener('click', async ()=> {
@@ -157,12 +158,13 @@ var check = async function () {
         })
         
      }
+     
 
 $("form").submit(e=>{
 
  e.preventDefault();
  //System.Net.ServicePointManager.Expect100Continue = false;
-    //var value = 0;
+    value = 0;
     check();
 })
 
@@ -212,10 +214,7 @@ console.log('Form data: ', formdata)
             }
         })
         console.log(res.data);
-       // if (res){
-          //  value = 1
-        //}
-        
+   
         
         //uploadfile
         if(res.data && secimagedata){
@@ -256,9 +255,7 @@ console.log('Form data: ', formdata)
          
         }
         
-        
-        
-        
+          
 
         //upload image to file manager in frappe
         if(res.data && imagedata){
@@ -298,10 +295,15 @@ console.log('Form data: ', formdata)
             })
         
         }
-    window.location = medaUrl 
-             
+       
+   if(value == 0){
+   
+   }else{     
+   
+   window.location = medaUrl 
+     }        
 
-    }
+   }
 
 }
 
@@ -381,7 +383,7 @@ membership_type = event.target.value;
 
   } else {
   
-  
+  /*
   frappe.call({
           method: 'em_member.em_member.whitelist.checkmember',
           args: {
@@ -404,8 +406,8 @@ membership_type = event.target.value;
             
 
             }
-         /*   else if(r.message == 3){
-             dialog = frappe.msgprint({
+           else if(r.message == 3){
+             /*dialog = frappe.msgprint({
 		    title: __('Notice'),
 		    indicator: 'green',
 		    message: __('A user has already registered with this Email address ')
@@ -413,7 +415,9 @@ membership_type = event.target.value;
 	    dialog.show()
 	    dialog.$wrapper.find('.modal-dialog').css("height", "175px");
             
-            }*/
+            window.location = medaUrl 
+            
+            }
              else if(r.message == 4){
            
             dialog = frappe.msgprint({
@@ -425,7 +429,7 @@ membership_type = event.target.value;
 	    dialog.$wrapper.find('.modal-dialog').css("height", "175px");
             
             }
-            else{
+            else{*/
             
                document.querySelector(".withmeda").classList.remove("medapay-hide");
     		document.querySelector(".withmeda").classList.add("medapay-show");
@@ -434,14 +438,14 @@ membership_type = event.target.value;
     		document.querySelector(".dollarAccount").classList.remove("medapay-show");
     		
     		
-
+/*
             
             //let awa = 1;
             }
           }
         })
 
-
+*/
   }
 
   document.querySelector('#fee').value = amount + (membership_type == 'NEDD' ? "USD" : " ETB");
@@ -453,13 +457,21 @@ membership_type = event.target.value;
 console.log(membership_type)
 
   //server call to medapay
-
+/*
+  const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhdG9tZWRhQDM2MGdyb3VuZC5jb20iLCJuYW1lIjoiTWVkYSBWb3VjaGVyIiwicGhvbmUiOiIrMjUxOTEzMDA4NTk1IiwiaXNzIjoiIiwiaWF0IjoxNTk4OTY0NTQwLCJleHAiOjIwMzA1MDA1NDB9.p-QGfkmRtUlGTQhthS5PW1Ora6E4E-i5VMLjzAo96mY';
+  
+  
   const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjaGFudElkIjoiNjI3Y2JlOGI3MDMxNDM2NjVjYmIxYmE4Iiwicm9sZSI6Im1lcmNoYW50Iiwic3ViIjoiNjI3Y2JlOGI3MDMxNDM2NjVjYmIxYmE4IiwiaWF0IjoxNjUyNzc0MjI3fQ.VSttZEoBbesVkgova60hjUW-3mAlEui38uQ65frF1pY'; 
   /*const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhdG9tZWRhQDM2MGdyb3VuZC5jb20iLCJuYW1lIjoiTWVkYSBWb3VjaGVyIiwicGhvbmUiOiIrMjUxOTEzMDA4NTk1IiwiaXNzIjoiIiwiaWF0IjoxNTk4OTY0NTQwLCJleHAiOjIwMzA1MDA1NDB9.0xCu1GltD3fM8EoZOryDtw7zQMvyBWq1vBbIzQEH1Fk';
   
-  
+  /*
     const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjaGFudElkIjoiNjI3Y2Q3ZmE3MDMxNDM2NjVjYmIxYmFiIiwicm9sZSI6Im1lcmNoYW50Iiwic3ViIjoiNjI3Y2Q3ZmE3MDMxNDM2NjVjYmIxYmFiIiwiaWF0IjoxNjUyOTQyNTM5fQ.mnrEsr-85bRt7vIld2z9RWirjlQG7_ZccykrvbzbtyU'; 
   */
+  
+  
+  
+ const accessToken ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhdG9tZWRhQDM2MGdyb3VuZC5jb20iLCJuYW1lIjoiTWVkYSBWb3VjaGVyIiwicGhvbmUiOiIrMjUxOTEzMDA4NTk1IiwiaXNzIjoiIiwiaWF0IjoxNTk4OTY0NTQwLCJleHAiOjIwMzA1MDA1NDB9.p-QGfkmRtUlGTQhthS5PW1Ora6E4E-i5VMLjzAo96mY';
+ 
   
   let link;
 
@@ -560,7 +572,7 @@ GET https://api.sandboax.pay.meda.chat/v1/bills/1000000
         });
 
       }
-      getStatus()
+      getStatus();
      // */
          
     },

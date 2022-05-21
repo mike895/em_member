@@ -72,9 +72,9 @@
                 <div class="form-group">
                   <label for="full_name">Last Name *</label>
                   {% if logedinMember %}
-                  <input class="form-control" id="last_name" type="text" value={{logedinMember.last_name}} placeholder="Full Name" name = "last_name">
+                  <input class="form-control" id="last_name" type="text" value= "{{logedinMember.last_name}}" placeholder="Last Name" name = "last_name">
                   {% else %}
-                  <input class="form-control" id="last_name" type="text" name = "last_name" placeholder="Last Name" required>
+                  <input class="form-control" id="last_name" type="text" name = "last_name" placeholder="Last Name " required>
                   {% endif %}
                </div>    
                 <div class="form-group">

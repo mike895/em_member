@@ -117,28 +117,25 @@ app_license = "MIT"
 
 scheduler_events = {
 
-	"cron": {
-		"* * * * *": [
-			"em_member.em_member.whitelist.send_email"
-		]
-	
-	},
+#	"cron": {
+#		"* * * * *": [
+#			"em_member.em_member.whitelist.send_email"
+#		]
+#	
+#	},
 
- 	"all": [
- 		"em_member.tasks.all"
- 	],
-#	"daily": [
- #		"em_member.em_member.whitelist.send_email"
+# 	"all": [
+ #		"em_member.tasks.all"
  #	],
- 	"hourly": [
- 		"em_member.tasks.hourly"
- 	],
- 	"all": [
+	"daily": [
  		"em_member.em_member.whitelist.send_email"
  	],
- 	"monthly": [
- 		"em_member.tasks.monthly"
- 	],
+ #	"hourly": [
+ #		"em_member.tasks.hourly"
+# 	],
+ #	"monthly": [
+ #		"em_member.tasks.monthly"
+# 	],
  }
 
 

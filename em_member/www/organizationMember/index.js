@@ -1,15 +1,13 @@
 
 let see = document.querySelector('#see').value;
 
-var medaUrl;	
+var medaUrl;
+var value;	
 
 document.querySelector('.paywithmeda').addEventListener('click', async () => {
+value = 1;
  check()
- /*
-  if (see ==0){
-       orgform();
-      }
-   */  
+ 
 })
 
 
@@ -19,7 +17,7 @@ const check = async function () {
           args: {
           	  self: 'self',
 		  args: {
-		      email: document.querySelector('#email').value,
+		      email: document.querySelector('#OrganizationEmail').value,
 		  }
           },
           callback: (r) => {
@@ -76,7 +74,7 @@ $("form").submit(e=>{
 
  e.preventDefault();
  //System.Net.ServicePointManager.Expect100Continue = false;
-    //var value = 0;
+    value = 0;
     check();
 })
 
@@ -111,9 +109,12 @@ let orgform = async()=>{
             }
         })
         console.log(res.data);
+   if (value == 0){
    
-       
+   }else{
+        window.location = medaUrl 
     }
+  }
 
 }
 
@@ -148,6 +149,18 @@ document.querySelector("#Membershipfee").classList.add("medapay-show");
           },
           callback: (r) => {
             console.log(r.message,"hello")
+            if(r.message == 2){
+         /*    dialog = frappe.msgprint({
+		    title: __('Notice'),
+		    indicator: 'green',
+		    message: __('A user has already registered with this Email address ')
+		});
+	    dialog.show()
+	    dialog.$wrapper.find('.modal-dialog').css("height", "175px");
+            */
+
+  		//window.location = medaUrl 
+            }
             
             if(r.message == 3){
              dialog = frappe.msgprint({
@@ -160,7 +173,7 @@ document.querySelector("#Membershipfee").classList.add("medapay-show");
             
 
             }
-    
+   
              else if(r.message == 4){
            
             dialog = frappe.msgprint({
@@ -198,9 +211,11 @@ console.log(membership_type)
   //server call to medapay
 /*
   const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhdG9tZWRhQDM2MGdyb3VuZC5jb20iLCJuYW1lIjoiTWVkYSBWb3VjaGVyIiwicGhvbmUiOiIrMjUxOTEzMDA4NTk1IiwiaXNzIjoiIiwiaWF0IjoxNTk4OTY0NTQwLCJleHAiOjIwMzA1MDA1NDB9.0xCu1GltD3fM8EoZOryDtw7zQMvyBWq1vBbIzQEH1Fk';
- */
+
    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjaGFudElkIjoiNjI3Y2JlOGI3MDMxNDM2NjVjYmIxYmE4Iiwicm9sZSI6Im1lcmNoYW50Iiwic3ViIjoiNjI3Y2JlOGI3MDMxNDM2NjVjYmIxYmE4IiwiaWF0IjoxNjUyNzc0MjI3fQ.VSttZEoBbesVkgova60hjUW-3mAlEui38uQ65frF1pY'; 
- 
+  */
+   const accessToken ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhdG9tZWRhQDM2MGdyb3VuZC5jb20iLCJuYW1lIjoiTWVkYSBWb3VjaGVyIiwicGhvbmUiOiIrMjUxOTEzMDA4NTk1IiwiaXNzIjoiIiwiaWF0IjoxNTk4OTY0NTQwLCJleHAiOjIwMzA1MDA1NDB9.p-QGfkmRtUlGTQhthS5PW1Ora6E4E-i5VMLjzAo96mY';
+  
  
   let link;
 
@@ -216,19 +231,19 @@ console.log(membership_type)
         amount: amount,
         full_name: full_name,
         phone_number: phone_number,
-        email: email,
+        email: document.querySelector('#OrganizationEmail').value,
         redirect: 'organizationMember'
       }
     },
     btn: $('.paywithmeda'),
     callback: (r) => {
-      medaUrl = r.message.link.href
+      medaUrl = r.message.link.href;
       billReference = r.message.billReferenceNumber;
       document.querySelector('#reference').value = billReference;
       billLink = r.message.link.href;
       console.log(billLink);
       console.log(document.querySelector('.paywithmeda'),'there is element tho');
-      document.querySelector('.paywithmeda').href = billLink;
+      //document.querySelector('.paywithmeda').href = billLink;
      
       //run the callback function here 
       
@@ -304,18 +319,7 @@ GET https://api.sandboax.pay.meda.chat/v1/bills/1000000
         })
 
       }
-      //const minutes = 1;
-      //const interval = minutes * 1000;
-
-      //setInterval(function () {
-        // catch all the errors.
-        let status = getStatus()
-          .catch(console.log);
-        // if(status == 'PAYED'){
-        //   console.log
-        // }
-      //}, interval);
-     // */
+    getStatus();
          
     },
     error: (r) => {
@@ -337,10 +341,6 @@ GET https://api.sandboax.pay.meda.chat/v1/bills/1000000
 })
 
 
-      
-      
-      
-      
       
       
       
