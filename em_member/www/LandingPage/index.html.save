@@ -1,0 +1,400 @@
+{% extends 'templates/landingpage_base.html'%}
+
+
+
+{% block content %}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h1>Ethiopian Medical Association
+          </h1>
+          <h2>Dependable physicians for better health</h2>
+          <div class="d-flex gap-3">
+          <!-  {% if logedinMember or logedinorg %}
+            {% else %}-->
+            <div class="only" id="reg-mem">
+
+              <a href="/Membership" class="btn-get-started scrollto">Register as a Member</a>
+            </div>
+           <div class="only" id="reg-mem">
+
+             <a href="/organizationMember" class="btn-get-started scrollto">Register as an Organization</a>
+           </div>
+           <!-- {% endif %} -->
+            <a href="https://www.youtube.com/watch?v=TKxXi29cKPk" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img"membershipId>
+          <img src="assets/em_member/Landing/img/EMA-logo.png" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+  
+  
+  
+  
+  
+
+  
+  
+    <main id="main">
+
+    <!-- ======= Featured Services Section ======= -->
+    <section id="featured-services" class="featured-services">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-laptop"></i></div>
+             <!--
+              {% if logedinMember %}
+              <h4 class="title"><a href="">Status - {{logedinMember.member_status }}</a></h4>
+              <p class="description">if your status is inactive please activate you Membership by paying your due Membership fee!!</p>
+              {% elif logedinorg %}
+              <h4 class="title"><a href="">Status - {{logedinorg.status }}</a></h4>
+              <p class="description">if your status is inactive please activate you Membership by paying your due Membership fee!!</p>
+              {%else%} -->
+              <h4 class="title"><a href=""  id="mem_status">Status - Not Registered</a></h4>
+              <p class="description">Become part of the pioneering association by becoming a member. <strong> Press Register. </strong> </p>
+             <!- {% endif %}-->
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
+            <div class="icon-box certificate">
+              <div class="icon"><i class="bi bi-card-checklist"></i></div>
+              <h4 class="title"><a >Edit Certification</a></h4>
+              <p class="description">Here you will find list of Certification you acquire and download it</div>
+          </div>
+          
+          <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+            <div class="icon-box membershipId">
+            <div class="icon"><i class="bi bi-clipboard-data"></i></div>
+            <!--
+            {% if logedinMember %}
+             <h4 class="title"><a href = "/card" >ID: {{logedinMember.name}} </a></h4>
+              <p class="description">Here you can see your Membership ID once you register and Download it</p>
+            {% elif logedinorg %}  
+              <h4 class="title"><a href = "/card" >ID: {{logedinorg.name}} </a></h4>
+              <p class="description">Here you can see your Membership ID once you register and Download it</p>
+            {% else %} -->
+              <h4 class="title"><a href = "/card" id="mem_id" > ID</a></h4>
+              <p class="description">Here you can see your Membership ID once you register and Download it</p>
+           <!-- {% endif %} -->  
+            </div>
+          </div>
+        </div>
+   
+        
+      </div>
+    </section><!-- End Featured Services Section -->
+    
+<section class="about" id="about">    
+       <div class="container">
+     	 <div class="row">
+     	 	<div class="col-lg-4">
+     	 		<img src="" class = "img-fluid" id= "cgcg">
+     	 	</div>
+		
+		 <div class="col-lg-8 pt-4 pt-lg-0 content">
+     	 		<h3><a id="mem-pre"></a> <a id="mem-name"></a></h3><br>
+     	 		<ul class="list">
+              <li id = "mem-only"><i class="bi bi-check-circle"></i>Employed At: <a id = "memb-desc"></a></li>
+              <li id = "org-only"><i class="bi bi-check-circle"></i>Address:<a id = "memb-city"></a>, <a id = "memb-add"></a></li>
+              <li id = "org-only"><i class="bi bi-check-circle"></i>Website: <a id = "memb-web"></a></li>
+              <li id = "both"><i class="bi bi-check-circle"></i>Email: <a id = "memb-email"></a></li>
+              <li id = "both"><i class="bi bi-check-circle"></i>Phone: (+251)<a id = "memb-phone"></a></li>
+            </ul>
+            <p>
+          <span id = "memb-type"></span> Member of Ethiopian Medical Association
+            </p>
+     	 	
+	<div class="updateprofile">
+          <a href="" id= "profileedit" class="btn-get-started scrollto">Update Profile</a>
+        </div>
+     	 	
+     	 	</div>
+     	 </div>
+     
+     </div>
+        
+ </section>   
+
+
+          <!-- End About Section -->
+    
+
+
+
+       <!-- ============== Counts Section ============= -->
+
+  <section id="counts" class="counts">
+      <div class="container">
+        <div class="row counters">
+          <div class="col-12 text-center">
+
+	<h2><a id = "counter"></a></h2>
+
+ 	</div>
+      </div>
+     </div>
+  </section>   
+
+<script>
+
+
+      
+ var event_land = async ()=> {
+
+ var event_res = await $.ajax({
+            url: '/api/resource/Events?fields=["event_name","status","date","time","location","image"]',
+            type: 'GET',
+            headers: {
+		 'Content-Type': 'application/json',
+                'X-Frappe-CSRF-Token': frappe.csrf_token
+            },
+            success: function(data){
+                return data
+            },
+            error: function(data){
+                return data
+            }
+        })
+        
+        }
+event_land();
+
+     
+
+
+
+</script>
+
+
+
+
+
+
+       <section id="services" class="services section-bg">
+         <div class="container">
+
+        <div class="section-title">
+          <span>Up coming Events</span>
+          <h2>Up coming Events</h2>
+          <p>list of upcoming events </p>
+        </div>  
+        <div class="row" id="events-list">
+<script> for(i=0;i<event_res.length;i++){ </script>
+
+
+
+
+
+
+
+
+      	</div>
+        </div>
+      </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+      <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <span>Contact</span>
+          <h2>Contact</h2>
+          <p>Reach us with any inquires</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-5 d-flex align-items-stretch">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>kirkos Sub-City
+                  Roosevelt street, In-front of Africa Union main gate</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>ethiopianmed@gmail.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Call:</h4>
+                <p>+251 115 521776/+251 115 547982</p>
+              </div>
+
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+            </div>
+
+          </div>
+
+          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name">Your Name</label>
+                  <input type="text" name="name" class="form-control" id="name" required>
+                </div>
+                <div class="form-group col-md-6 mt-3 mt-md-0">
+                  <label for="name">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <label for="name">Subject</label>
+                <input type="text" class="form-control" name="subject" id="subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <label for="name">Message</label>
+                <textarea class="form-control" name="message" rows="10" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+    
+    
+    
+    
+    </main>
+
+
+    <script>
+
+
+
+/*
+console.log(document.querySelector('.logout'))
+document.querySelector('.logout').addEventListener("click",()=>{
+  //send get request to the given end point 
+  // get /api/method/frappe.auth.logout
+
+  frappe.call({
+                      method: 'em_member.em_member.whitelist.logoutwhite',
+                      args: { 
+                        
+                      },
+                      callback:(r)=>{
+                        console.log(r,'logout ')
+                    
+                      },
+                      erorr:(e)=>{
+                        console.log(e,"logout error")
+                      }
+                    })
+})
+
+
+
+
+
+        let item = document.querySelector('.membershipId');
+        item.addEventListener('click',event=>{
+          console.log('click event ');
+          let id = document.querySelector('.showid')
+           if(id.classList.contains('medapay-hide')){
+                        
+                        id.classList.add("medapay-show");
+                      id.classList.remove("medapay-hide");
+  
+                          } else{
+                    
+                            id.classList.add("medapay-hide");
+                      id.classList.remove("medapay-show");
+  
+                          }   })
+
+                          //show certification
+
+         document.querySelector('.certificate').addEventListener('click',event=>{
+          console.log('click event ');
+          let id = document.querySelector('.showcertificatoin')
+           if(id.classList.contains('medapay-hide')){
+                        
+                        id.classList.add("medapay-show");
+                      id.classList.remove("medapay-hide");
+  
+                          } else{
+                    
+                            id.classList.add("medapay-hide");
+                      id.classList.remove("medapay-show");
+  
+                          }   })
+           function bookEvent(event,email){
+             console.log(event);
+             console.log(email);
+
+
+             frappe.call({
+                      method: 'em_member.em_member.whitelist.bookEvent',
+                      args: {
+                        req: {
+                          event:event,
+                          email:email
+
+                        }
+                      
+                      },
+                      callback:(r)=>{
+                        console.log(r,'sucess with the payment ')
+                    
+                      },
+                      erorr:(e)=>{
+                        console.log(e,"error")
+                      }
+                    })
+           }
+                          
+
+*/
+    </script>
+
+
+
+
+
+{% endblock %}

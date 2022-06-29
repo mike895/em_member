@@ -114,7 +114,7 @@ app_license = "MIT"
 
 # Scheduled Tasks
 # ---------------
-
+#website_clear_cache = "em_member.overrides.clear_website_cache"
 scheduler_events = {
 
 #	"cron": {
@@ -186,6 +186,16 @@ scheduler_events = {
 # 		"doctype": "{doctype_4}"
 # 	}
 # ]
+
+override_whitelisted_methods = {
+       "frappe.desk.reportview.get": "em_member.ema_utils.permission.proxy.proxy_get",
+       "frappe.desk.reportview.get_count": "em_member.ema_utils.permission.proxy.proxy_count",
+       "frappe.desk.form.load.getdoc": "em_member.ema_utils.permission.proxy.proxy_doc",
+       "frappe.desk.form.save.savedocs": "em_member.ema_utils.permission.proxy.proxy_save"
+}
+
+
+
 
 # Authentication and authorization
 # --------------------------------

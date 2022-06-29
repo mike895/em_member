@@ -1,4 +1,21 @@
 
+
+import frappe
+import requests
+import json
+
+
+
+@frappe.whitelist(allow_guest=True)
+def get_context(context):
+
+	response_API = requests.get('http://18.193.100.79/api/resource/Events?fields=["event_name","status","image","time","location","date"]')
+
+	r_dict = response_API.json()
+	context.event = r_dict
+
+
+"""
 from calendar import month
 from pickle import FALSE
 import frappe
@@ -29,12 +46,35 @@ def checkPaymentStatus(email,refno):
         frappe.db.set_value('Members', email, {
 				'member_status':'Expired'
 				})
-				
+			
+def clear_cache(user=None):
+	cache = frappe.cache()
+
+	groups = ( "user_recent", "user_roles", "user_doc", "lang",
+		"defaults", "user_permissions", "roles", "home_page", "linked_with",
+		"desktop_icons", 'portal_menu_items')
+
+	if user:
+		for name in groups:
+			cache.hdel(name, user)
+		cache.delete_keys("user:" + user)
+		frappe.defaults.clear_cache(user)
+	else:
+		for name in groups:
+			cache.delete_key(name, user)
+		clear_global_cache()
+		frappe.defaults.clear_cache()
+
+
+
 @frappe.whitelist(allow_guest=True)
 def get_context(context):
+   # 
+    #context.kk="jjjj"
+#frappe.cache()
     email = frappe.session.user
     context.email = email
-    logedinMember =frappe.db.get_value('Members',{'email':email},['prefix','name','full_name','profession_specialization','other_specialization','place_of_employmentinstitution','phone_number','membership_type','picture','member_status','membership_id','membership_expire_date','generate_payment_reference'],as_dict=1)
+  logedinMember =frappe.db.get_value('Members',{'email':email},['prefix','name','full_name','profession_specialization','other_specialization','place_of_employmentinstitution','phone_number','membership_type','picture','member_status','membership_id','membership_expire_date','generate_payment_reference'],as_dict=1)
     logedinorg =frappe.db.get_value('Organizations',{'email':email},['name_1','name','status','phone_number','region','city','website','email','membership_expire_date'],as_dict=1)
     if logedinMember and not logedinorg:
     	context.logedinMember = logedinMember
@@ -117,7 +157,7 @@ def get_context(context):
     
     
     
-    """
+
         if not context.logedinMember:
     	    context.Certification = "unavailable"    
     	    context.membershipStatus = "your membership status is Inactive"
@@ -147,7 +187,7 @@ def get_context(context):
             
     	
     	
-    	"""
+"""
     	
     	
     	

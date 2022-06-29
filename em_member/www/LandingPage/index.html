@@ -14,22 +14,22 @@
           </h1>
           <h2>Dependable physicians for better health</h2>
           <div class="d-flex gap-3">
-            {% if logedinMember or logedinorg %}
-            {% else %}
-            <div>
+          <!-  {% if logedinMember or logedinorg %}
+            {% else %}-->
+            <div class="only" id="reg-mem">
 
               <a href="/Membership" class="btn-get-started scrollto">Register as a Member</a>
             </div>
-           <div>
+           <div class="only" id="reg-mem">
 
              <a href="/organizationMember" class="btn-get-started scrollto">Register as an Organization</a>
            </div>
-            {% endif %}
+           <!-- {% endif %} -->
             <a href="https://www.youtube.com/watch?v=TKxXi29cKPk" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img"membershipId>
-          <img src="assets/em_member/Landing/img/EMA-logo.png" class="img-fluid animated" alt="">
+          <img src="assets/em_member/Landing/img/new_ema.jpg" class="img-fluid animated" alt="">
         </div>
       </div>
     </div>
@@ -53,17 +53,17 @@
           <div class="col-lg-4 col-md-6">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-laptop"></i></div>
-             
+             <!--
               {% if logedinMember %}
               <h4 class="title"><a href="">Status - {{logedinMember.member_status }}</a></h4>
               <p class="description">if your status is inactive please activate you Membership by paying your due Membership fee!!</p>
               {% elif logedinorg %}
               <h4 class="title"><a href="">Status - {{logedinorg.status }}</a></h4>
               <p class="description">if your status is inactive please activate you Membership by paying your due Membership fee!!</p>
-              {%else%}
-              <h4 class="title"><a href="">Status - Not Registered</a></h4>
+              {%else%} -->
+              <h4 class="title"><a href=""  id="mem_status">Status - Not Registered</a></h4>
               <p class="description">Become part of the pioneering association by becoming a member. <strong> Press Register. </strong> </p>
-              {% endif %}
+             <!- {% endif %}-->
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
@@ -76,16 +76,17 @@
           <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
             <div class="icon-box membershipId">
             <div class="icon"><i class="bi bi-clipboard-data"></i></div>
+            <!--
             {% if logedinMember %}
              <h4 class="title"><a href = "/card" >ID: {{logedinMember.name}} </a></h4>
               <p class="description">Here you can see your Membership ID once you register and Download it</p>
             {% elif logedinorg %}  
               <h4 class="title"><a href = "/card" >ID: {{logedinorg.name}} </a></h4>
               <p class="description">Here you can see your Membership ID once you register and Download it</p>
-            {% else %}
-              <h4 class="title"><a href = "/card" > ID</a></h4>
+            {% else %} -->
+              <h4 class="title"><a href = "/card" id="mem_id" > ID</a></h4>
               <p class="description">Here you can see your Membership ID once you register and Download it</p>
-            {% endif %}  
+           <!-- {% endif %} -->  
             </div>
           </div>
         </div>
@@ -94,165 +95,89 @@
       </div>
     </section><!-- End Featured Services Section -->
     
-    
-    
-    
-    
-    
-    
-    
-       <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container memb">
-      
-        {%if logedinMember%}
-        <div class="row">
-          <div class="col-lg-6">
-            {% if logedinMember%}
-            <img src={{logedinMember.picture}}  class="member-profile"alt="">
-            {% else %}
-            <img src="assets/em_member/Landing/img/about.png" class="img-fluid" alt="">
-            {% endif %}
-            
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 content">
-            <h3>{{logedinMember.prefix}} {{logedinMember.full_name}}</h3>
-            <p class="fst-italic">
-              {% if logedinMember.profession_specialization == "other" %}
-              {{logedinMember.other_specialization }}
-              {% else %}
-              {{logedinMember.profession_specialization}}
-              {% endif %}
-            </p>
-            <ul>
-              <li><i class="bi bi-check-circle"></i>Employed At:  {% if logedinMember.profession_specialization == "other" %}
-								      {{logedinMember.other_specialization }}
-								      {% else %}
-								      {{logedinMember.profession_specialization}}
-								      {% endif %}</li>
-              <li><i class="bi bi-check-circle"></i>Email: {{email}}</li>
-              <li><i class="bi bi-check-circle"></i>Phone: (+251){{logedinMember.phone_number}}</li>
+<section class="about" id="about">    
+       <div class="container">
+     	 <div class="row">
+     	 	<div class="col-lg-4">
+     	 		<img src="" class = "img-fluid" id= "cgcg">
+     	 	</div>
+		
+		 <div class="col-lg-8 pt-4 pt-lg-0 content">
+     	 		<h3><a id="mem-pre"></a> <a id="mem-name"></a></h3><br>
+     	 		<ul class="list">
+              <li id = "mem-only"><i class="bi bi-check-circle"></i>Employed At: <a id = "memb-desc"></a></li>
+              <li id = "org-only"><i class="bi bi-check-circle"></i>Address:<a id = "memb-city"></a>, <a id = "memb-add"></a></li>
+              <li id = "org-only"><i class="bi bi-check-circle"></i>Website: <a id = "memb-web"></a></li>
+              <li id = "both"><i class="bi bi-check-circle"></i>Email: <a id = "memb-email"></a></li>
+              <li id = "both"><i class="bi bi-check-circle"></i>Phone: (+251)<a id = "memb-phone"></a></li>
             </ul>
             <p>
-          {{logedinMember.membership_type}} Member of Ethiopian Medical Association
+          <span id = "memb-type"></span> Member of Ethiopian Medical Association
             </p>
-            <div class="updateprofile">
-          <a href="/Membership" class="btn-get-started scrollto">Update Profile</a>
+     	 	
+	<div class="updateprofile">
+          <a href="" id= "profileedit" class="btn-get-started scrollto">Update Profile</a>
         </div>
-          </div>
-        </div>
+     	 	
+     	 	</div>
+     	 </div>
+     
+     </div>
         
-        {% elif logedinorg %} 
-        <div class="row">
-        <!--     <div class="col-lg-6">
-            {% if logedinorg%}
-            <img src={{logedinMember.picture}}  class="member-profile"alt="">
-            {% else %}
-            <img src="assets/em_member/Landing/img/about.png" class="img-fluid" alt="">
-            {% endif %}  
-          </div> -->
-            
-          <div class="col-lg-6 pt-4 pt-lg-0 content">
-            <h3 id = "org">{{logedinorg.name_1}}</h3><br>
-            <p class="fst-italic">
-              Email: {{email }}
-            </p>
-            <ul>
-              <li><i class="bi bi-check-circle"></i>Address: {{logedinorg.city}}, {{logedinorg.region}}   </li>
-              <li><i class="bi bi-check-circle"></i>Phone: (+251){{logedinorg.phone_number}}</li>
-               <li><i class="bi bi-check-circle"></i>Website: {{logedinorg.website}}</li>
-            </ul>
-        
-            <div class="updateprofile">
-          <a href="/organizationMember" class="btn-get-started scrollto">Update Profile</a>
-        </div>
-          </div>
-        </div>
-        
-        
-        
-        
-        
-        {% else %}
-        <div class="updateprofile">
-          <a href="/Membership" class="btn-get-started scrollto">Register as a Member</a>
-        </div><br/>
-        <div class="updateprofile">
+ </section>   
 
-          <a href="/Organization" class="btn-get-started scrollto">Register as an Organization</a>
-        </div>
-        {% endif %}
-      </div>
-      
-      
-      
-      
-    </section><!-- End About Section -->
+
+          <!-- End About Section -->
     
-    
-    
-    
-    
-    <!-- ======= Counts Section ======= -->
-    
-    <section id="counts" class="counts">
+
+
+
+       <!-- ============== Counts Section ============= -->
+
+  <section id="counts" class="counts">
       <div class="container">
         <div class="row counters">
           <div class="col-12 text-center">
-            {% if logedinMember %}
-               {% if stat ==1 %}
-            	 <h2> {{years}} years {{months}} months and {{dates}} days are left for your membership to expire.</h2>
-            	 {% elif stat == 2%}  
-            	 {% else %}
-            	  <h2> Your membership has expired </h2>
-            	  {% endif %}
-           {% elif logedinorg %}
-           	{% if stat == 1%}
-        	  <h2> {{years}} years {{months}} months and {{dates}} days are left for your membership to expire.</h2>
-        	{% elif stat == 2%}    
-        	{% else %}
-        	  <h2> Your membership has expired </h2>	
-        	{% endif %}   
-           {% else %}
-           {% endif %}
-        </div>
-        </div>
+
+	<h2><a id = "counter"></a></h2>
+
+ 	</div>
+      </div>
+     </div>
+  </section>   
+
+
+
+
+<!--
+
+
+       <section id="services" class="services section-bg">
+         <div class="container">
+
+        <div class="section-title">
+          <span>Up coming Events</span>
+          <h2>Up coming Events</h2>
+          <p>list of upcoming events </p>
+        </div>  
+        <div class="row" id="events-list">
+	
+      	</div>
         </div>
       </section>
-<!-- 
-        
-          
-            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-            <p>10 day's</p>
-          </div>
-          
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-            <p>2 Hours</p>
-        </div>
-        
-        <div class="col-lg-3 col-6 text-center">
-          <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-          <p>3 minutes</p>
-        </div>
-        
-        <div class="col-lg-3 col-6 text-center">
-          <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-          <p>2 seconds</p>
-        </div>
-        
-      </div>
-<div class="dayleft text-center">
-          <p>left until Membership expire !!</p>
-        </div>
-        
-      </div>
-    </section>End Counts Section -->
-      <!-- ======= Services Section ======= -->
-      
-      
-      {% if logedinMember %}
-      <section id="services" class="services section-bg">
+
+-->
+
+
+
+
+
+
+
+
+
+
+<section id="services" class="services section-bg">
       <div class="container">
 
         <div class="section-title">
@@ -264,80 +189,44 @@
         
 
         <div class="row">
-          {% set doc = frappe.get_all('Events',fields=['event_name','status','date','time','location','image'] ) %}
-          {% for event in doc %}
+          {% for event in event.data %}
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="icon-box">
               <div class="">
                 <img src={{event.image}}  class="event-img"alt="">
               </div>
-              <h4><a href="" onclick="return false">{{event.event_name}} </a></h4>
+              <h4><a href="">{{event.event_name}} </a></h4>
               <p>Status : {{event.status}}</p>
               <p>Date : {{event.date}}</p>
               <p>Time : {{event.time}}</p>
               <p>Location : {{event.location}}</p>
 
-
               
-           <!--   <h4><a>
-              edit    BOOKED
-              </a></h4>  -->
-              
-              
+              <h4><a>
+                  BOOKED
+              </a></h4>
             </div>
- <!--  <button class="event-button" onclick="bookEvent('{{event.event_name}}','{{frappe.session.user }}')" >Book Now</button>
-   style="display:none" -->
           </div>
           {% endfor %}
           
-          <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Event-2</a></h4>
-              <p>description of event two</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">Event-3</a></h4>
-              <p>description of event three</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-world"></i></div>
-              <h4><a href="">Event-4</a></h4>
-              <p>description of event four</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-slideshow"></i></div>
-              <h4><a href="">Event-5</a></h4>
-              <p>description of event five</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-arch"></i></div>
-              <h4><a href="">event-6</a></h4>
-              <p>description of event six</p>
-            </div>
-          </div>
-           -->
-           
+        
         </div>
 
       </div>
     </section><!-- End Services Section -->
 
-    
-    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
     
     
     
@@ -426,7 +315,7 @@
 
 
 
-
+/*
 console.log(document.querySelector('.logout'))
 document.querySelector('.logout').addEventListener("click",()=>{
   //send get request to the given end point 
@@ -509,7 +398,7 @@ document.querySelector('.logout').addEventListener("click",()=>{
            }
                           
 
-
+*/
     </script>
 
 

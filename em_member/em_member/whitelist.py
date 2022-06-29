@@ -24,6 +24,7 @@ def delete_session(sid=None, user=None, reason="Session Expired"):
 
 	frappe.cache().hdel("session", sid)
 	frappe.cache().hdel("last_db_session_update", sid)
+
 	if sid and not user:
 		table = DocType("Sessions")
 		user_details = frappe.qb.from_(table).where(
@@ -53,6 +54,7 @@ def clear_sessions(user=None, keep_current=False, device=None, force=False):
 
 	for sid in get_sessions_to_clear(user, keep_current, device):
 		delete_session(sid, reason=reason)
+
 
 def get_sessions_to_clear(user=None, keep_current=False, device=None):
 	'''Returns sessions of the current user. Called at login / logout
@@ -87,16 +89,16 @@ def DocType(*args, **kwargs):
 	return frappe.qb.DocType(*args, **kwargs)
 
 
-
+@frappe.whitelist(allow_guest=True)
 def logout(self=Self,arg='', user=None):
-		if not user: user = frappe.session.user
-		self.run_trigger('on_logout')
+	if not user: user = frappe.session.user
+	self.run_trigger('on_logout')
 
-		if user == frappe.session.user:
-			delete_session(frappe.session.sid, user=user, reason="User Manually Logged Out")
-			self.clear_cookies()
-		else:
-			clear_sessions(user)
+	if user == frappe.session.user:
+		delete_session(frappe.session.sid, user=user, reason="User Manually Logged Out")
+		self.clear_cookies()
+	else:
+		clear_sessions(user)
 
 @frappe.whitelist(allow_guest=True)
 def logoutwhite():
@@ -107,7 +109,7 @@ def getStatus(req):
 	input = json.loads(req)
 	billReference = input['billReference']
 	print('bill ref',billReference)
-	url = 'https://api.sandbox.pay.meda.chat/api/bills/'+billReference
+	url = 'https://api.pay.meda.chat/api/bills/'+billReference
 	#url ='https://api.pay.meda.chat/api/bills/'+billReference
 	statusResponse = requests.get(url,headers={
 		"Authorization": 'Bearer '+input['accessToken'],
@@ -130,8 +132,8 @@ def paywithMeda(self,args):
 	print(type(input['phone_number']))
 	#url ='http://192.168.1.14:6789/api/bills/'
 	#url ='https://api.pay.meda.chat/api/bills/'
-	url = 'https://api.sandbox.pay.meda.chat/api/bills/'
-	payload={"purchaseDetails":{"orderId": input["email"],"membership":input["membership_type"],"type":input["redirect"] ,"description": 'Paying for '+input["membership_type"]+' membership',"amount": int(input['amount']),"customerName": input['full_name'],"customerPhoneNumber" : '+'+str(input['phone_number'])},"redirectUrls": {"returnUrl": "http://18.193.100.79:8001/success","cancelUrl": "http://18.193.100.79:8001/failed","callbackUrl": "https://18.193.100.79:3000/api/callback"}}
+	url = 'https://api.pay.meda.chat/api/bills/'
+	payload={"purchaseDetails":{"orderId": input["email"],"extension_period":input["extension_period"],"membership":input["membership_type"],"type":input["redirect"] ,"description": 'Paying for '+input["membership_type"]+' membership',"amount": int(input['amount']),"customerName": input['full_name'],"customerPhoneNumber" : '+'+str(input['phone_number'])},"redirectUrls": {"returnUrl": "http://18.193.100.79/success","cancelUrl": "http://18.193.100.79/failed","callbackUrl": "http://18.193.100.79:3000/api/callback"}}
 	print(payload)
 	#18.193.100.79
 	response = requests.post(url,
@@ -429,7 +431,7 @@ def send_email():
 				print("has already expired")
 			else:
 				print(msg)
-				frappe.sendmail(recipients=note[i].email,sender="michael@360ground.com", subject="Notice", content = msg)
+				frappe.sendmail(recipients=note[i].email,sender="neddema2021@gmail.com", subject="Notice", content = msg)
 		
 	print(len(noteo))
 	for i in range(len(noteo)):
@@ -465,7 +467,7 @@ def send_email():
 				print("has already expired")
 			else:
 				print(msg)
-				frappe.sendmail(recipients=noteo[i].email,sender="michael@360ground.com", subject="Notice", content = msg)
+				frappe.sendmail(recipients=noteo[i].email,sender="neddema2021@gmail.com", subject="Notice", content = msg)
 			
 		"""
 		if (yearDiff < 1 and yearDiff >= 0) and monthDiff < 3 and (yearDiff !=0 or monthDiff !=0 or dayDiff !=0):
@@ -501,6 +503,16 @@ def checkmember(self,args):
 		return 4;
 	else: 
 		return 0;
+
+
+
+@frappe.whitelist()
+def get_contest(email):
+      payment = frappe.db.get_list('Payment',fields=['name','reference', 'extension_period', 'membership_type', 'membership_expire_date','amount'],filters={'email': email, 'payment_status': 'PAYED'})
+      return payment
+
+
+
 
 
 """

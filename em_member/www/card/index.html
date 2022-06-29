@@ -1,7 +1,12 @@
 {% extends 'templates/landingpage_base.html'%}
 
 {% block content %}
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
 
 
  <!-- ======= Breadcrumbs ======= -->
@@ -22,46 +27,130 @@
 
 
 
-<section id="my-section">
+<section id="my-section" >
 
-<div class = "holder">
+<div class = "holder" id = "cdd">
 
 <div class = "printform">
-<button class="btn btn-primary" onclick="window.print()">Print</button>
+<button class="btn btn-primary" id="download">Download</button>
 </div>
 
-<div class = "contain">
+<div class = "contain" id="contain">
+
 
 <div class ="up">
-<div class = "logom"></div>
-<div class = "title">
-<p>NETWORK OF ETHIOPIAN <br> DIASPORA DOCTORS <br> MEMBERSHIP ID</p>
-</div>
-</div>
-
-<div>
-<div class = "down">
-<div class = "imagep">
-<img src={{logedinMembercard.picture}} alt="">
-</div>
-<div class = "info">  
-<h1> Name: {{logedinMembercard.full_name}} </h1>
-<h2> ID: {{logedinMembercard.name}}</h2>
-<h2> Valid Through: </h2>
-</div>
+{% if orgcard %}
+<h2>Corporate member</h2>
+{% else %}
+<h2>{{card.membership_type}} member</h2>
+{% endif %}
 </div>
 
-
-<div class = "txt"> 
-<p>Strong and dependable physicians for better health!</p>
+<div class= "down">
+{% if card %}
+<div class = "imagep"> 
+<img src= "{{card.picture}}" alt="member image">
 </div>
+{% endif %}
+
+
+{% if card %}
+<div class = "info">
+
+<div class = "name">{{card.prefix}} {{card.full_name}} {{card.middle_name}} </div>
+<div class = "space"></div>
+<h5> Member Type: <span>{{card.membership_type}}</span> </h5>
+<h5> Member ID: <span>{{card.name}}</span> </h5>
+{% if card.profession_specialization %}
+<h5> Specialty: <span>{{card.profession_specialization}}</span></h5>
+{% else %}
+<h5> Specialty: <span>{{card.other_specialization}}</span></h5>
+{% endif %}
+
+{% if card.member_since %}
+<h5> Member Since: <span>{{card.member_since}}</span> </h5>
+{% else %}
+<h5> Member Since: <span>Not Eligible</span> </h5>
+{% endif %}
+
+
+<h5> Expiry Date: <span>{{card.membership_expire_date}}</span> </h5>
+
+
+<br>
+</div>
+
+{% else %}
+<div class = "org">
+<div class = "orgname">{{orgcard.name_1}} </div>
+<div class="space"></div>
+<div class="space"></div>
+
+<h5> Member ID: <span>{{orgcard.name}}</span> </h5>
+{% if card.member_since %}
+<h5> Member Since: <span>{{orgcard.member_since}}</span> </h5>
+{% else %}
+<h5> Member Since: <span>Not Eligible</span> </h5>
+{% endif %}
+
+<h5> Expiry Date: <span>{{orgcard.membership_expire_date}}</span> </h5>
+
+</div>
+{% endif %}
+
+
+</div>
+
 
 </div>
 
 </section>
 
-<style>
 
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" ></script>
+
+
+	<script type="text/javascript">
+	$(document).ready(function($) 
+	{ 
+
+		$(document).on('click', '#download', function(event) 
+		{
+			event.preventDefault();
+
+
+			var element = document.getElementById('contain'); 
+
+			var opt = 
+			{
+			  margin:       1,
+			  filename:     'membership_card.pdf',
+			  image:        { type: 'jpeg', quality: 0.98 },
+			  html2canvas:  { scale: 2 },
+			  jsPDF:        { unit: 'mm', format: 'letter', orientation: 'portrait' }
+			};
+
+			// New Promise-based usage:
+			html2pdf().set(opt).from(element).save();
+
+			 
+		});
+
+ 
+ 
+	});
+	</script>
+
+	 
+
+
+
+
+        
+<style>
+<!--
 @media print{
  body *:not(#my-section):not(#my-section *){
  	visibility: hidden;
@@ -71,17 +160,37 @@
 	}
 
 	#my-section{
-		position: absolute;
+		position: relative;
 		top: 0;
 		left: 0;
 	
 	}
 }
+-->
 
+#my-section {
+height:58%;
+width:52%;
+margin-left:20%;
+}
 
+h2 {
+color:#D7E3EA;
+font-size:150%;
+}
+
+h5 {
+font-size:100%;
+margin-bottom:5px;
+color:#193566;
+}
 
 .up{
 display:flex;
+float:right;
+margin-top:8%;
+padding-right:25%;
+margin-bottom:5%;
 }
 
 
@@ -89,7 +198,8 @@ display:flex;
 .holder{
 display:flex;
 justify-content:center;
-
+height:100%;
+width:100%;
 
 }
 
@@ -101,65 +211,70 @@ margin-top:200px;
 }
 
 .contain{
-background-image: url('assets/em_member/Landing/img/emacard.svg');
+background-image: url("assets/em_member/Landing/img/ema.svg");
 background-repeat: no-repeat;
-background-size:cover;
-position:relative;
-height: 460px;
-width: 810px;
-align-items:center;
-
-
+background-size: 80%;
+background-origin: content-box;
+padding-top:6%;
+width:72.5%;
+height:100%;
 }
 
 .down{
+margin-top: 5%;
+height:100%;
 display: flex;
-}
-
-.title{
-margin-top:10%;
-color:#135A55;
-margin-left: 7%;
-font-size:25px;
-text-align:center;
+width:100%;
 }
 
 
 .imagep{
-border-radius:75px;
-border:5px;
-border-style:solid;
-border-color:#70A7DA;
-height:150px;
-width:150px;
-justify-content:center;
-margin-top: -2%;
-margin-left: 12%;
-margin-right: 5%;	
-
+position:relative;
+margin-top:4%;
+margin-left:2%;
+margin-right:3%;
+width:15%;
 
 }
 
-
-.logom{
-background-image: url('assets/em_member/Landing/img/EMA-logo.png');
-background-repeat: no-repeat;
-background-size:cover;
-height:150px;
-width: 150px;
+span {
+color: #193566;
+font-size:100%;
 }
+
+
 .info{
-margin-top:5%;
+position: relative;
+width:70%;
+padding-bottom:5%;
 }
 
-.txt{
-margin-top:1%;
-float:right;
+.name {
+color:#00515B;
+padding-bottom:1%;
+font-size:170%;
+font-weight: bold;
+
 }
 
-img{
-object-fit:cover;
-border-radius:inherit;
+.orgname {
+margin-top: 13%;
+color:#00515B;
+padding-bottom:1%;
+font-size:120%;
+font-weight: bold;
+
+}
+
+
+.space {
+height:1%;
+}
+
+.org {
+position: relative;
+padding-bottom:5%;
+padding-left: 10%;
 }
 
 </style>

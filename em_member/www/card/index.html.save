@@ -1,0 +1,249 @@
+{% extends 'templates/landingpage_base.html'%}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+</head>
+
+
+ <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Membership Card </h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Membership Card</li>
+          </ol>
+        </div>
+        
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+
+
+
+<section id="my-section" >
+
+<div class = "holder" id = "cdd">
+
+<div class = "printform">
+<button class="btn btn-primary" id="download">Download</button>
+</div>
+
+<div class = "contain" id="contain">
+
+
+<div class ="up">
+{% if orgcard %}
+<h5><span>Organization member</span></h5>
+{% else %}
+<h5><span>{{card.membership_type}} member</span></h5>
+{% endif %}
+</div>
+
+<div class= "down">
+{% if card %}
+<div class = "imagep"> 
+<img src= "{{card.picture}}" alt="member image">
+</div>
+{% endif %}
+
+
+{% if card %}
+<div class = "info">
+
+<div class = "name">{{card.prefix}} {{card.full_name}} {{card.middle_name}} </div>
+<div class = "space"></div>
+<h5> Member Type: <span>{{card.membership_type}}</span> </h5>
+<h5> Member ID: <span>{{card.name}}</span> </h5>
+{% if card.member_since %}
+<h5> Member Since: <span>{{card.member_since}}</span> </h5>
+{% else %}
+<h5> Member Since: <span>Not Eligible</span> </h5>
+{% endif %}
+{% if card.profession_specialization %}
+<h5> Specialty: <span>{{card.profession_specialization}}</span></h5>
+{% else %}
+<h5> Specialty: <span>{{card.other_specialization}}</span></h5>
+{% endif %}
+<h5> Expiry Date: <span>{{card.membership_expire_date}}</span> </h5>
+
+</div>
+
+{% else %}
+<div class = "org">
+<div class = "orgname">{{orgcard.name_1}} </div>
+<div class="space"></div>
+<div class="space"></div>
+
+<h5> Member ID: <span>{{orgcard.name}}</span> </h5>
+{% if card.member_since %}
+<h5> Member Since: <span>{{orgcard.member_since}}</span> </h5>
+{% else %}
+<h5> Member Since: <span>Not Eligible</span> </h5>
+{% endif %}
+
+<h5> Expiry Date: <span>{{orgcard.membership_expire_date}}</span> </h5>
+<div class="space"></div>
+<div class="space"></div>
+
+
+
+</div>
+{% endif %}
+
+
+</div>
+
+
+</div>
+
+</section>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+<script>
+
+window.onload = function(){
+document.getElementById("download").addEventListener("click", ()=>{
+	const member = this.document.getElementById("contain");
+
+	var opt = {  filename: 'membership_card.pdf'   };
+	html2pdf().from(member).set(opt).save();
+
+	})
+
+}
+
+</script>
+
+
+<style>
+<!--
+@media print{
+ body *:not(#my-section):not(#my-section *){
+ 	visibility: hidden;
+ 	}
+	button{
+	visibility: hidden;
+	}
+
+	#my-section{
+		position: relative;
+		top: 0;
+		left: 0;
+	
+	}
+}
+-->
+
+#my-section {
+height:58%;
+width:52%;
+margin-left:20%;
+}
+
+h5 {
+font-size:100%;
+margin-bottom:5px;
+}
+
+.up{
+display:flex;
+float:right;
+padding-right:10%;
+margin-bottom:10%;
+}
+
+
+
+.holder{
+display:flex;
+justify-content:center;
+height:97%;
+width:100%;
+
+}
+
+.printform{
+align-items:center;
+text-align:center;
+margin-right:10%;
+margin-top:200px;
+}
+
+.contain{
+position:relative;
+background-image: url("assets/em_member/Landing/img/ema.svg");
+background-repeat: no-repeat;
+background-size: cover;
+padding-top:10%;
+width:72.5%;
+height:100%;
+}
+
+.down{
+margin-top: 10%;
+height:100%;
+display: flex;
+
+}
+
+
+.imagep{
+position:relative;
+margin-left:2%;
+margin-top:10%;
+margin-right:3%;
+width:23%;
+
+}
+
+span {
+color: #ffff;
+font-size:100%;
+}
+
+
+.info{
+position: relative;
+padding-bottom:5%;
+}
+
+.name {
+color:#D7E3E;
+padding-bottom:1%;
+font-size:150%;
+font-weight: bold;
+
+}
+
+.orgname {
+margin-top: 13%;
+color:#00515B;
+padding-bottom:1%;
+font-size:120%;
+font-weight: bold;
+
+}
+
+
+.space {
+height:5%;
+}
+
+.org {
+position: relative;
+padding-bottom:5%;
+padding-left: 10%;
+}
+
+</style>
+
+{% endblock %}
+
+

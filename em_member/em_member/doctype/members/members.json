@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:EMA-{YY}-{MM}-{membership_type}-{####}",
+ "autoname": "format:EMA{########}",
  "creation": "2022-05-09 10:30:10.926948",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -10,6 +10,7 @@
   "prefix",
   "titleoptional",
   "full_name",
+  "middle_name",
   "last_name",
   "date_of_birth",
   "geder",
@@ -45,10 +46,14 @@
   "membership_expire_date",
   "membership_type",
   "membership_fee_amount",
+  "column_break_40",
   "generate_payment_reference",
   "member_status",
-  "published",
-  "route"
+  "extension_period",
+  "member_since",
+  "branch",
+  "section_break_44",
+  "payment_history"
  ],
  "fields": [
   {
@@ -93,8 +98,10 @@
   {
    "fieldname": "email",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Email",
    "options": "Email",
+   "reqd": 1,
    "set_only_once": 1,
    "unique": 1
   },
@@ -222,7 +229,7 @@
    "fieldname": "membership_type",
    "fieldtype": "Select",
    "label": "Membership type",
-   "options": "\nAssociate\nCorporate\nHonorable\nJDN\nJunior(Medical Students)\nLifetime\nNEDD\nRegular"
+   "options": "\nAssociate\nHonorable\nJDN\nJunior(Medical Students)\nLifetime\nNEDD\nRegular"
   },
   {
    "fieldname": "membership_fee_amount",
@@ -240,18 +247,6 @@
    "fieldtype": "Select",
    "label": "Member Status",
    "options": "Inactive\nActive"
-  },
-  {
-   "default": "0",
-   "fieldname": "published",
-   "fieldtype": "Check",
-   "label": "published"
-  },
-  {
-   "default": "0",
-   "fieldname": "route",
-   "fieldtype": "Check",
-   "label": "Route"
   },
   {
    "fieldname": "img",
@@ -272,16 +267,51 @@
    "fieldname": "last_name",
    "fieldtype": "Data",
    "label": "Last Name"
+  },
+  {
+   "fieldname": "middle_name",
+   "fieldtype": "Data",
+   "label": "Middle Name"
+  },
+  {
+   "fieldname": "extension_period",
+   "fieldtype": "Int",
+   "label": "Extension Period"
+  },
+  {
+   "fieldname": "member_since",
+   "fieldtype": "Date",
+   "label": "Member Since"
+  },
+  {
+   "fieldname": "payment_history",
+   "fieldtype": "Table",
+   "label": "Payment History",
+   "options": "History",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_44",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Table MultiSelect",
+   "label": "Branch",
+   "options": "Selected Branch"
+  },
+  {
+   "fieldname": "column_break_40",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-20 11:36:27.460288",
+ "modified": "2022-06-27 14:40:53.397901",
  "modified_by": "Administrator",
  "module": "Em Member",
  "name": "Members",
  "name_case": "UPPER CASE",
- "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -311,6 +341,5 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
+ "sort_order": "DESC"
 }

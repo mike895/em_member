@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:EMA-{YY}-{MM}-Organization-{####}",
+ "autoname": "format:ORG{########}",
  "creation": "2022-05-10 15:07:12.654748",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -27,8 +27,13 @@
   "organization_member",
   "membership_expire_date",
   "status",
+  "column_break_21",
   "generate_payment_reference",
-  "membership_fee"
+  "membership_fee",
+  "member_since",
+  "branch",
+  "section_break_24",
+  "payment_history"
  ],
  "fields": [
   {
@@ -134,7 +139,7 @@
   {
    "fieldname": "status",
    "fieldtype": "Select",
-   "label": "Organization status",
+   "label": "Organization Membership status",
    "options": "Inactive\nActive"
   },
   {
@@ -147,15 +152,40 @@
    "fieldname": "membership_fee",
    "fieldtype": "Data",
    "label": "Amount of Membership Fee "
+  },
+  {
+   "fieldname": "member_since",
+   "fieldtype": "Date",
+   "label": "Member Since"
+  },
+  {
+   "fieldname": "section_break_24",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "payment_history",
+   "fieldtype": "Table",
+   "label": "Payment History",
+   "options": "History",
+   "read_only": 1
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Table MultiSelect",
+   "label": "Branch",
+   "options": "Selected Branch"
+  },
+  {
+   "fieldname": "column_break_21",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-19 11:55:03.058600",
+ "modified": "2022-06-27 14:43:18.647151",
  "modified_by": "Administrator",
  "module": "Em Member",
  "name": "Organizations",
- "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -172,6 +202,5 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
+ "sort_order": "DESC"
 }

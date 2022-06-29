@@ -59,6 +59,20 @@
              </div>
              
              {% endif %}
+
+
+<div class="form-group">
+              <label for="branch">Branch </label>
+              <select class="form-control branch-select" id="branch">
+                <option value = "">Select Your Branch</option>
+                {% for branch in branchs %}
+                <option value = "{{branch.name}}">{{branch.name}}</option>
+                {% endfor %}
+                </select>
+            </div>
+
+
+
              <div class="form-group">
               <label for="headoffice"><h2>Head Office Location</h2></label>
               <div class="row">
@@ -144,12 +158,18 @@
                  </div>
               {% endif %}
               
+
+                <div class="form-group">
+                  <label for="extension_period">Extension Period * </label>
+                     <input class="form-control" id="extension_period" type="number" name="extension_period">
+                </div>
+
                
                <div class="form-group">
                 <label for="Membershiptype">Membership Type</label>
                 <select class="form-control" id="Membershiptype" name=>
-                  <option>None</option>
-                  <option>Corporate</option>
+                  <option value="">None</option>
+                  <option value="Corporate">Corporate</option>
                  </select>
                </div>
                <div class="form-group">

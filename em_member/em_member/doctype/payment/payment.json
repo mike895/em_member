@@ -1,6 +1,5 @@
 {
  "actions": [],
- "allow_rename": 1,
  "autoname": "field:reference",
  "creation": "2022-05-11 10:31:47.921275",
  "doctype": "DocType",
@@ -12,7 +11,11 @@
   "payment_method",
   "member_status",
   "date",
-  "email"
+  "amount",
+  "email",
+  "extension_period",
+  "membership_type",
+  "membership_expire_date"
  ],
  "fields": [
   {
@@ -26,37 +29,64 @@
   {
    "fieldname": "payment_status",
    "fieldtype": "Data",
-   "label": "  Payment Status"
+   "label": "  Payment Status",
+   "read_only": 1
   },
   {
    "fieldname": "payment_method",
    "fieldtype": "Data",
-   "label": "  Payment Method"
+   "label": "  Payment Method",
+   "read_only": 1
   },
   {
    "fieldname": "member_status",
    "fieldtype": "Data",
-   "label": "  Member Status"
+   "label": "  Member Status",
+   "read_only": 1
   },
   {
    "fieldname": "date",
    "fieldtype": "Date",
-   "label": "  Date"
+   "label": "  Date",
+   "read_only": 1
   },
   {
    "fieldname": "email",
    "fieldtype": "Data",
    "label": "  Email",
    "set_only_once": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Data",
+   "label": "Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "extension_period",
+   "fieldtype": "Int",
+   "label": "Extension Period",
+   "read_only": 1
+  },
+  {
+   "fieldname": "membership_type",
+   "fieldtype": "Data",
+   "label": "Membership type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "membership_expire_date",
+   "fieldtype": "Date",
+   "label": "Membership Expire Date",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-20 10:22:35.237860",
+ "modified": "2022-06-15 11:54:59.553711",
  "modified_by": "Administrator",
  "module": "Em Member",
  "name": "Payment",
- "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -73,6 +103,5 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
+ "sort_order": "DESC"
 }

@@ -63,18 +63,28 @@
                 <div class="form-group">
                   <label for="full_name">First Name *</label>
                   {% if logedinMember %}
-                  <input class="form-control" id="full_name" type="text" value={{logedinMember.full_name}} placeholder="Full Name" name = "full_name">
+                  <input class="form-control" id="full_name" type="text" value="{{logedinMember.full_name}}" placeholder="First Name" name = "full_name">
                   {% else %}
-                  <input class="form-control" id="full_name" type="text" name = "full_name" placeholder="Full Name" required>
+                  <input class="form-control" id="full_name" type="text" name = "full_name" placeholder="First Name" required>
                   {% endif %}
                </div>
                
+		<div class="form-group">
+                  <label for="middle_name">Middle Name *</label>
+                  {% if logedinMember %}
+                  <input class="form-control" id="middle_name" type="text" value="{{logedinMember.middle_name}}" placeholder="Father's Name" name = "middle_name" >
+                  {% else %}
+                  <input class="form-control" id="middle_name" type="text" name ="middle_name"   placeholder= "Father's Name" required>
+                  {% endif %}
+               </div>
+
+
                 <div class="form-group">
                   <label for="full_name">Last Name *</label>
                   {% if logedinMember %}
                   <input class="form-control" id="last_name" type="text" value= "{{logedinMember.last_name}}" placeholder="Last Name" name = "last_name">
                   {% else %}
-                  <input class="form-control" id="last_name" type="text" name = "last_name" placeholder="Last Name " required>
+                  <input class="form-control" id="last_name" type="text" name = "last_name" placeholder="GrandFather's  Name " required>
                   {% endif %}
                </div>    
                 <div class="form-group">
@@ -234,6 +244,23 @@
                           
               </select>
             </div> 
+
+
+
+
+            <div class="form-group">
+              <label for="branch">Branch </label>
+              <select class="form-control branch-select" id="branch">
+                <option value = "">Select Your Branch</option>
+		{% for branch in branchs %}
+                <option value = "{{branch.name}}">{{branch.name}}</option>
+                {% endfor %}
+		</select>
+            </div>
+
+
+
+
            
               <div class="detail-section ">
                 <a id="details"></a>
@@ -352,6 +379,11 @@
                       </div>
               </div>
 
+		<div class="form-group">
+                  <label for="extension_period">Extension Period * </label>
+                     <input class="form-control" id="extension_period" type="number" name="extension_period">
+                </div>
+
               <div class="form-group">
                 <label for="membership">Membership type *</label>
                 <select class="form-control membership-select" id="membership" name = "membership_type">
@@ -365,6 +397,7 @@
                   <option value = "JDN">JDN</option>
                 </select>
               </div>
+
               <div class="form-group">
               <label for="fee">Membership fee amount</label>
               

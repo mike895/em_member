@@ -1,0 +1,59 @@
+{
+ "actions": [],
+ "creation": "2022-06-15 11:03:59.644845",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "membership_expire_date",
+  "membership_type",
+  "amount",
+  "reference",
+  "extension_period"
+ ],
+ "fields": [
+  {
+   "fieldname": "membership_expire_date",
+   "fieldtype": "Date",
+   "label": "Membership Expire Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "membership_type",
+   "fieldtype": "Data",
+   "label": "Membership type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "extension_period",
+   "fieldtype": "Int",
+   "label": "Extension Period",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reference",
+   "fieldtype": "Link",
+   "label": "Generate payment reference ",
+   "options": "Payment",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Data",
+   "label": "Membership fee amount",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2022-06-15 15:14:04.992321",
+ "modified_by": "Administrator",
+ "module": "Em Member",
+ "name": "History",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}
